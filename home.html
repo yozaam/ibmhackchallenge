@@ -56,21 +56,24 @@
 
   
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Public Transit Management Post Covid-19</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Reports <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Map</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <a class="navbar-brand" href="#">Public Transit Management Post Covid-19</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="./home.html">Reports </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./mappage.html">Map <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./contact.html">About <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
 
  <!--  <div class="title container">
@@ -82,13 +85,13 @@
     <h2>Bus Route Risk Factors</h2>
     <div class="progress">
       
-      <div class="progress-bar bg-success" style="width: 40%">
-          Safe (Kalnagar)
+      <div class="progress-bar bg-success" style="width: 0%" id="pjuhu">
+          Safe (Juhu)
       </div>
-      <div class="progress-bar bg-warning" style="width: 25%">
+      <div class="progress-bar bg-warning" style="width: 0%" id="psantacruz">
           Low Risk (Santacruz)
       </div>
-      <div class="progress-bar bg-danger" style="width: 15%">
+      <div class="progress-bar bg-danger" style="width: 0%" id="pbandra">
           High Risk (Bandra)
       </div>
     </div>
@@ -97,22 +100,61 @@
     <div class="stops container">
       <h2>Individual Bus Stop Risk Factors</h2>
       <div class="progress">
-          <div class="progress-bar progress-bar-striped bg-success" style="width: 20%">
-            Kalnagar
+          <div class="progress-bar progress-bar-striped bg-success" style="width: 0%" id="juhu">
+            Juhu
           </div>
       </div>
       <div class="progress">
-          <div class="progress-bar progress-bar-striped bg-warning" style="width: 40%">
+          <div class="progress-bar progress-bar-striped bg-warning" style="width: 0%" id="santacruz">
             Santacruz
           </div>
       </div>
       <div class="progress">
-          <div class="progress-bar progress-bar-striped bg-danger" style="width: 80%">
+          <div class="progress-bar progress-bar-striped bg-danger" id="bandra" style="width: 0%">
             Bandra
           </div>
       </div>
     </div>
     
+    <script>
+      // For animating the progress bars
+      $(document).ready(function(){
+
+
+        
+
+        window.stop = "juhu";
+
+        
+        $('#juhu').animate({width: "35%"},10000);
+        $('#pjuhu').animate({width: "40%"},10000);
+
+
+
+        setTimeout(function(){ 
+
+                window.stop = "santacruz";
+                $('#santacruz').animate({width: "80%"},10000);
+                $('#psantacruz').animate({width: "25%"},10000);
+             }, 15000);
+      
+
+
+        });
+
+
+
+        setTimeout(function(){  
+
+            window.stop="bandra";
+            $('#bandra').animate({width: "100%"},10000);
+            $('#pbandra').animate({width: "15%"},10000);
+
+
+        }, 30000);
+        
+    </script>
+
     <!-- this is all list code , html css ,ssjs
 
      -->
@@ -129,21 +171,33 @@
       <tbody>
         <tr>
           <th scope="row">1</th>
-          <td>Mark</td>
-          <td>3:  <i class="fas fa-head-side-cough"></i></td>
-          <td>4:  <i class="fas fa-head-side-mask"></i></td>
+          <td>Juhu</td>
+          <td> <i id="jcough">3</i>:  
+            <i class="fas fa-head-side-cough"></i>
+          </td>
+          <td> <i id="jmask">4</i>:  
+            <i class="fas fa-head-side-mask"></i>
+          </td>
         </tr>
         <tr>
           <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>3:  <i class="fas fa-head-side-cough"></i></td>
-          <td>4:  <i class="fas fa-head-side-mask"></i></td>
+          <td>Santacruz</td>
+          <td> <i id="scough">3</i>:  
+            <i class="fas fa-head-side-cough"></i>
+          </td>
+          <td> <i id="smask">4</i>:  
+            <i class="fas fa-head-side-mask"></i>
+          </td>
         </tr>
         <tr>
           <th scope="row">3</th>
-          <td>Larry</td>
-          <td>3:  <i class="fas fa-head-side-cough"></i></td>
-          <td>4:  <i class="fas fa-head-side-mask"></i></td>
+          <td>Bandra</td>
+          <td> <i id="bcough">3</i>:  
+            <i class="fas fa-head-side-cough"></i>
+          </td>
+          <td> <i id="bmask">4</i>:  
+            <i class="fas fa-head-side-mask"></i>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -244,7 +298,7 @@
         }
       );
 
-      stop = "Bandra";
+      
 
       $("#submit").click(
         function(){
@@ -252,7 +306,8 @@
 
          var reportId = firebase.database().ref().child('reports').push().key;
  
-        writeUserData(reportId,mask,stop,outside);
+        updateStop(window.stop,mask) 
+        // writeUserData(reportId,mask,window.stop,outside);
 
         $("#cross").click() ;
       });
@@ -278,15 +333,42 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   // Get a reference to the database service
-var database = firebase.database();
-function writeUserData(reportId, mask,stop,outside) {
-  firebase.database().ref('reports/' + reportId).set({
-    mask: mask,
-    stop: stop,
-    outside: outside
-  });
-}
+  var database = firebase.database().ref('stops');
+  
 
+  function updateStop(stop,mask) {
+
+    var ref = 'stops/'+stop+'/';
+    if(mask){
+      ref = ref+'mask';
+    }else{
+      ref = ref+'cough';
+    }
+    var database = firebase.database().ref(ref);
+
+    database.transaction(function(count) {
+      
+      return count+1;
+    });
+  }
+
+// function writeUserData(reportId, mask,stop,outside) {
+//   firebase.database().ref('stops/' + stop).set({
+//     mask: mask,
+//     outside: outside
+//   });
+// }
+
+    var stopsRef = firebase.database().ref();
+    stopsRef.on('value', function(snapshot) {
+        snapshot = snapshot.val().stops;
+      document.getElementById('bcough').innerHTML =  snapshot.bandra.cough;
+      document.getElementById('bmask').innerHTML =  snapshot.bandra.mask;
+      document.getElementById('scough').innerHTML =  snapshot.santacruz.cough;
+      document.getElementById('smask').innerHTML =  snapshot.santacruz.mask;
+      document.getElementById('jcough').innerHTML =  snapshot.juhu.cough;
+      document.getElementById('jmask').innerHTML =  snapshot.juhu.mask;
+    });
 
 </script>
 </body>
